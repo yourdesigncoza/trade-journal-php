@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
     
     <!-- Top Section: Form and Stats Side by Side -->
     <div class="row g-4 mb-4">

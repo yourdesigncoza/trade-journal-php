@@ -435,19 +435,64 @@ $(document).ready(function() {
         const template = $('#performanceTemplate').html();
         $performanceStats.html(template);
         
+        // Update trade count in header
+        $('#statsTradeCount').text(stats.totalTrades);
+        
         // Update values
         $('#totalTrades').text(stats.totalTrades);
         $('#winRate').text(stats.winRate + '%');
         $('#totalWins').text(stats.totalWins);
         $('#totalLosses').text(stats.totalLosses);
-        $('#totalBE').text(stats.totalBE);
-        $('#totalCancelled').text(stats.totalCancelled);
-        $('#accountGain').text(stats.accountGain + '%');
+        $('#accountGain').text(stats.accountGain >= 0 ? '+' + stats.accountGain + '%' : stats.accountGain + '%');
         $('#profitFactor').text(stats.profitFactor);
-        $('#avgRR').text(stats.avgRR);
-        $('#avgPL').text(stats.avgPL + '%');
-        $('#bestTrade').text(stats.bestTrade + '%');
-        $('#worstTrade').text(stats.worstTrade + '%');
+        $('#avgRR').text(stats.avgRR + ':1');
+        $('#bestTrade').text(stats.bestTrade >= 0 ? '+' + stats.bestTrade + '%' : stats.bestTrade + '%');
+        $('#worstTrade').text(stats.worstTrade >= 0 ? '+' + stats.worstTrade + '%' : stats.worstTrade + '%');
+        
+        // Update badge colors based on values
+        updateBadgeColors(stats);
+    }
+    
+    function updateBadgeColors(stats) {
+        // Update Account Gain badge color
+        const accountGainBadge = $('#accountGain');
+        if (stats.accountGain > 0) {
+            accountGainBadge.removeClass('badge-phoenix-danger badge-phoenix-secondary').addClass('badge-phoenix-success');
+        } else if (stats.accountGain < 0) {
+            accountGainBadge.removeClass('badge-phoenix-success badge-phoenix-secondary').addClass('badge-phoenix-danger');
+        } else {
+            accountGainBadge.removeClass('badge-phoenix-success badge-phoenix-danger').addClass('badge-phoenix-secondary');
+        }
+        
+        // Update Best Trade badge color
+        const bestTradeBadge = $('#bestTrade');
+        if (stats.bestTrade > 0) {
+            bestTradeBadge.removeClass('badge-phoenix-danger badge-phoenix-secondary').addClass('badge-phoenix-success');
+        } else if (stats.bestTrade < 0) {
+            bestTradeBadge.removeClass('badge-phoenix-success badge-phoenix-secondary').addClass('badge-phoenix-danger');
+        } else {
+            bestTradeBadge.removeClass('badge-phoenix-success badge-phoenix-danger').addClass('badge-phoenix-secondary');
+        }
+        
+        // Update Worst Trade badge color
+        const worstTradeBadge = $('#worstTrade');
+        if (stats.worstTrade > 0) {
+            worstTradeBadge.removeClass('badge-phoenix-danger badge-phoenix-secondary').addClass('badge-phoenix-success');
+        } else if (stats.worstTrade < 0) {
+            worstTradeBadge.removeClass('badge-phoenix-success badge-phoenix-secondary').addClass('badge-phoenix-danger');
+        } else {
+            worstTradeBadge.removeClass('badge-phoenix-success badge-phoenix-danger').addClass('badge-phoenix-secondary');
+        }
+        
+        // Update Win Rate badge color
+        const winRateBadge = $('#winRate');
+        if (stats.winRate >= 60) {
+            winRateBadge.removeClass('badge-phoenix-warning badge-phoenix-danger').addClass('badge-phoenix-success');
+        } else if (stats.winRate >= 40) {
+            winRateBadge.removeClass('badge-phoenix-success badge-phoenix-danger').addClass('badge-phoenix-warning');
+        } else {
+            winRateBadge.removeClass('badge-phoenix-success badge-phoenix-warning').addClass('badge-phoenix-danger');
+        }
     }
     
     // =================== AUTO-SAVE FUNCTIONALITY ===================

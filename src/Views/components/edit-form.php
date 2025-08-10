@@ -4,7 +4,7 @@
     <!-- Trade Basics Section -->
     <div class="row g-3 mb-4">
         <div class="col-12">
-            <h6 class="text-primary border-bottom border-primary pb-2 mb-3">Trade Basics</h6>
+            <h6 class="mb-0">Trade Basics</h6>
         </div>
         
         <div class="col-md-6">
@@ -41,7 +41,7 @@
     <!-- Performance Section -->
     <div class="row g-3 mb-4">
         <div class="col-12">
-            <h6 class="text-success border-bottom border-success pb-2 mb-3">Performance</h6>
+            <h6 class="mb-0">Performance</h6>
         </div>
         
         <div class="col-md-4">
@@ -88,7 +88,7 @@
     <!-- Metrics Section -->
     <div class="row g-3 mb-4">
         <div class="col-12">
-            <h6 class="text-info border-bottom border-info pb-2 mb-3">Metrics</h6>
+            <h6 class="mb-0">Metrics</h6>
         </div>
         
         <div class="col-12">
@@ -125,7 +125,7 @@
     <!-- Charts Section -->
     <div class="row g-3 mb-4">
         <div class="col-12">
-            <h6 class="text-warning border-bottom border-warning pb-2 mb-3">Charts</h6>
+            <h6 class="mb-0">Charts</h6>
         </div>
         
         <div class="col-md-6">
@@ -142,7 +142,7 @@
     <!-- Comments Section -->
     <div class="row g-3 mb-4">
         <div class="col-12">
-            <h6 class="text-info border-bottom border-info pb-2 mb-3">Comments</h6>
+            <h6 class="mb-0">Comments</h6>
         </div>
         
         <div class="col-12">
@@ -151,8 +151,8 @@
     </div>
     
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary" id="updateTradeBtn">
+        <button type="button" class="btn btn-subtle-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-subtle-primary" id="updateTradeBtn">
             <span id="updateText">Update Trade</span>
             <span id="updateSpinner" class="spinner-border spinner-border-sm ms-2 d-none"></span>
         </button>

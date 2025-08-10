@@ -1,19 +1,15 @@
-<div class="card shadow-sm">
-    <div class="card-header bg-primary text-white">
-        <h4 class="mb-0">
+<div class="card shadow-none border mb-3">
+    <div class="card-body">
+        <h5 class="mb-7">
             <i class="fas fa-chart-line me-2"></i>
             Trading Journal Entry
-        </h4>
-    </div>
-    <div class="card-body">
+        </h5>
         <form id="tradingForm">
             
             <!-- Trade Basics Section (Blue) -->
             <div class="row g-3 mb-4">
                 <div class="col-12">
-                    <h5 class="text-primary border-bottom border-primary pb-2 mb-3">
-                        <i class="fas fa-coins me-2"></i>Trade Basics
-                    </h5>
+                    <h6 class="mb-0">Trade Basics</h6>
                 </div>
                 
                 <div class="col-md-3">
@@ -50,9 +46,7 @@
             <!-- Performance Section (Green) -->
             <div class="row g-3 mb-4">
                 <div class="col-12">
-                    <h5 class="text-success border-bottom border-success pb-2 mb-3">
-                        <i class="fas fa-trending-up me-2"></i>Performance
-                    </h5>
+                    <h6 class="mb-0">Performance</h6>
                 </div>
                 
                 <div class="col-md-2">
@@ -99,9 +93,7 @@
             <!-- Metrics Section (Purple) -->
             <div class="row g-3 mb-4">
                 <div class="col-12">
-                    <h5 class="text-info border-bottom border-info pb-2 mb-3">
-                        <i class="fas fa-chart-bar me-2"></i>Metrics
-                    </h5>
+                    <h6 class="mb-0">Metrics</h6>
                 </div>
                 
                 <div class="col-md-12">
@@ -138,9 +130,7 @@
             <!-- Charts Section (Orange) -->
             <div class="row g-3 mb-4">
                 <div class="col-12">
-                    <h5 class="text-warning border-bottom border-warning pb-2 mb-3">
-                        <i class="fas fa-image me-2"></i>Charts
-                    </h5>
+                    <h6 class="mb-0">Charts</h6>
                 </div>
                 
                 <div class="col-md-6">
@@ -157,9 +147,7 @@
             <!-- Comments Section (Teal) -->
             <div class="row g-3 mb-4">
                 <div class="col-12">
-                    <h5 class="text-info border-bottom border-info pb-2 mb-3">
-                        <i class="fas fa-comment me-2"></i>Comments
-                    </h5>
+                    <h6 class="mb-0">Comments</h6>
                 </div>
                 
                 <div class="col-12">
@@ -170,7 +158,7 @@
             <!-- Submit Button -->
             <div class="row">
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary btn-lg w-100" id="submitBtn">
+                    <button type="submit" class="btn btn-subtle-primary me-1 mb-1" id="submitBtn">
                         <i class="fas fa-save me-2"></i>
                         <span id="submitText">Save Trade Entry</span>
                         <span id="submitSpinner" class="spinner-border spinner-border-sm ms-2 d-none"></span>
