@@ -3,7 +3,7 @@
         <div class="row g-3 justify-content-between align-items-center mb-5">
             <div class="col-12 col-md">
                 <h5 class="text-body mb-0">
-                    <i class="fas fa-table me-2"></i>
+                    <i class="fas fa-bar-chart me-2"></i>
                     Trading History
                 </h5>
             </div>
@@ -53,4 +53,4 @@
         </div>
     </div>
 </div>
-
+</div>
