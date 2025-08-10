@@ -21,6 +21,38 @@ class ApiController extends BaseController
         }
     }
     
+    public function getEntriesHtml()
+    {
+        try {
+            $entries = $this->tradingJournal->getAllEntries();
+            
+            if (empty($entries)) {
+                $html = '
+                    <tr>
+                        <td colspan="13" class="text-center py-4">
+                            <i class="fas fa-chart-line fs-1 text-body-tertiary mb-3 d-block"></i>
+                            <h6 class="text-body-secondary fs-7">No trades found</h6>
+                            <p class="text-body-tertiary mb-0 fs-8">Start by adding your first trade entry above.</p>
+                        </td>
+                    </tr>';
+            } else {
+                // Include helper functions once
+                include_once __DIR__ . '/../Views/components/trade-row-functions.php';
+                
+                ob_start();
+                foreach ($entries as $trade) {
+                    include __DIR__ . '/../Views/components/trade-row.php';
+                }
+                $html = ob_get_clean();
+            }
+            
+            $this->jsonResponse(['success' => true, 'html' => $html]);
+        } catch (Exception $e) {
+            error_log("API HTML Error: " . $e->getMessage());
+            $this->jsonResponse(['success' => false, 'error' => 'Server error'], 500);
+        }
+    }
+    
     public function createEntry()
     {
         try {

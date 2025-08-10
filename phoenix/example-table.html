@@ -1,0 +1,511 @@
+## View screenshot in phoenix/screenshot/example-table.png
+                      
+   <div class="card shadow-none border mb-3" data-component-card="data-component-card">
+                  <div class="card-header p-4 border-bottom bg-body">
+                    <div class="row g-3 justify-content-between align-items-center">
+                      <div class="col-12 col-md">
+                        <h4 class="text-body mb-0" data-anchor="data-anchor" id="ajax-table">Ajax Table<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#ajax-table" style="margin-left: 0.1875em; padding-right: 0.1875em; padding-left: 0.1875em;"></a></h4>
+                      </div>
+                      <div class="col col-md-auto">
+                        <nav class="nav justify-content-end doc-tab-nav align-items-center" role="tablist"><button class="btn btn-link px-2 text-body copy-code-btn" type="button"><svg class="svg-inline--fa fa-copy me-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="copy" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"></path></svg><!-- <span class="fas fa-copy me-1"></span> Font Awesome fontawesome.com -->Copy Code</button><a class="btn btn-sm btn-phoenix-primary code-btn ms-2 collapsed" data-bs-toggle="collapse" href="#ajax-table-code" role="button" aria-controls="ajax-table-code" aria-expanded="false"> <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code me-2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>View code</a><a class="btn btn-sm btn-phoenix-primary preview-btn ms-2"><svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye me-2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>Hide code</a></nav>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body p-0">
+                    <div class="collapse code-collapse" id="ajax-table-code"><pre class="scrollbar language-html" style="max-height:420px" tabindex="0"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>table-list<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>advanceAjaxTable<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>table-responsive scrollbar mb-3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>table table-sm fs-9 mb-0 overflow-hidden<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>thead</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-body<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sort ps-3 pe-1 align-middle white-space-nowrap<span class="token punctuation">"</span></span> <span class="token attr-name">data-sort</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>orderId<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">min-width</span><span class="token punctuation">:</span> 4.5rem<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span>Order<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sort pe-1 align-middle white-space-nowrap<span class="token punctuation">"</span></span> <span class="token attr-name">data-sort</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>customer<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">min-width</span><span class="token punctuation">:</span> 8.5rem</span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span>Customer<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sort pe-1 align-middle white-space-nowrap pe-7<span class="token punctuation">"</span></span> <span class="token attr-name">data-sort</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>date<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Date<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sort pe-1 align-middle white-space-nowrap<span class="token punctuation">"</span></span> <span class="token attr-name">data-sort</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>address<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">min-width</span><span class="token punctuation">:</span> 12.5rem<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span>Ship To<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sort pe-1 align-middle white-space-nowrap<span class="token punctuation">"</span></span> <span class="token attr-name">data-sort</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>deliveryType<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">min-width</span><span class="token punctuation">:</span> 7rem</span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span>Delivery Type<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sort pe-1 align-middle white-space-nowrap text-center<span class="token punctuation">"</span></span> <span class="token attr-name">data-sort</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>status<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Status<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sort pe-1 align-middle white-space-nowrap text-end<span class="token punctuation">"</span></span> <span class="token attr-name">data-sort</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>amount<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Amount<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>no-sort<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>thead</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tbody</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tbody</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>d-flex justify-content-center mt-3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>page-link<span class="token punctuation">"</span></span> <span class="token attr-name">data-list-pagination</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>prev<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>fas fa-chevron-left<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mb-0 pagination<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>page-link pe-0<span class="token punctuation">"</span></span> <span class="token attr-name">data-list-pagination</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>next<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>fas fa-chevron-right<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>p-3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h4</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mb-3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>How to use<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h4</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>If you are using Gulp based workflow, follow these easy steps:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Give your table a unique ID.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Use the <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">&gt;</span></span>advanceAjaxTableInit() <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span>function from <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">&gt;</span></span>src/js/theme/advance-ajax-table.js <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span>in a new JS file and update the ID.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Import and invoke the function in your script file.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>If you are not using Gulp based workflow:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Give your table a unique ID.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Find the <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">&gt;</span></span>advanceAjaxTableInit() <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span>function from <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">&gt;</span></span>public/assets/js/pages/advance-ajax-table.js, <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span>copy the code, and update the ID in a new function.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+                    </div>
+                    <div class="p-4 code-to-copy">
+                      <div class="table-list" id="advanceAjaxTable">
+                        <div class="table-responsive scrollbar mb-3">
+                          <table class="table table-sm fs-9 mb-0 overflow-hidden">
+                            <thead class="text-body">
+                              <tr>
+                                <th class="sort ps-3 pe-1 align-middle white-space-nowrap" data-sort="orderId" style="min-width: 4.5rem;">Order</th>
+                                <th class="sort pe-1 align-middle white-space-nowrap" data-sort="customer" style="min-width: 8.5rem">Customer</th>
+                                <th class="sort pe-1 align-middle white-space-nowrap pe-7" data-sort="date">Date</th>
+                                <th class="sort pe-1 align-middle white-space-nowrap" data-sort="address" style="min-width: 12.5rem;">Ship To</th>
+                                <th class="sort pe-1 align-middle white-space-nowrap" data-sort="deliveryType" style="min-width: 7rem">Delivery Type</th>
+                                <th class="sort pe-1 align-middle white-space-nowrap text-center" data-sort="status">Status</th>
+                                <th class="sort pe-1 align-middle white-space-nowrap text-end" data-sort="amount">Amount</th>
+                                <th class="no-sort"></th>
+                              </tr>
+                            </thead>
+                            <tbody class="list"><tr class="btn-reveal-trigger">
+            <td class="order py-2  ps-3 align-middle white-space-nowrap">
+              <a class="fw-semibold" href="https://prium.github.io/phoenix/v1.12.0/apps/e-commerce/admin/order-details.html">
+                #2181
+              </a>
+            </td>
+            <td class="py-2 align-middle fw-bold">
+              <a class="fw-semibold text-body" href="#!">
+                Carry Anna
+              </a>
+            </td>
+            <td class="py-2 align-middle">
+              10/03/2023
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              Carry Anna, 2392 Main Avenue, Penasauka, New Jersey 02149
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              <p class="mb-0">Cash on Delivery</p>
+            </td>
+            <td class="py-2 align-middle text-center fs-8 white-space-nowrap">
+              <span class="badge fs-10 badge-phoenix badge-phoenix-success">
+                Completed
+                <svg class="svg-inline--fa fa-check ms-1" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="" style="transform-origin: 0.4375em 0.5em;"><g transform="translate(224 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" transform="translate(-224 -256)"></path></g></g></svg><!-- <span class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com -->
+              </span>
+            </td>
+            <td class="py-2 align-middle text-end fs-8 fw-medium">
+              $99
+            </td>
+            <td class="py-2 align-middle white-space-nowrap text-end">
+              <div class="dropstart position-static d-inline-block">
+                <button class="btn btn-link text-body btn-sm dropdown-toggle btn-reveal" type="button" id="order-dropdown-1" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                  <svg class="svg-inline--fa fa-ellipsis fs-9" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"></path></svg><!-- <span class="fas fa-ellipsis-h fs-9"></span> Font Awesome fontawesome.com -->
+                </button>
+                <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="order-dropdown-1">
+                  <a href="#!" class="dropdown-item">View</a>
+                  <a href="#!" class="dropdown-item">Edit</a>
+                  <div class"dropdown-divider"=""></div>
+                  <a href="#!" class="dropdown-item text-warning">Archive</a>
+                </div>
+              </div>
+            </td>
+          </tr><tr class="btn-reveal-trigger">
+            <td class="order py-2  ps-3 align-middle white-space-nowrap">
+              <a class="fw-semibold" href="https://prium.github.io/phoenix/v1.12.0/apps/e-commerce/admin/order-details.html">
+                #2182
+              </a>
+            </td>
+            <td class="py-2 align-middle fw-bold">
+              <a class="fw-semibold text-body" href="#!">
+                Milind Mikuja
+              </a>
+            </td>
+            <td class="py-2 align-middle">
+              10/03/2023
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              Milind Mikuja, 1 Hollywood Blvd,Beverly Hills, California 90210
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              <p class="mb-0">Cash on Delivery</p>
+            </td>
+            <td class="py-2 align-middle text-center fs-8 white-space-nowrap">
+              <span class="badge fs-10 badge-phoenix badge-phoenix-primary">
+                Processing
+                <svg class="svg-inline--fa fa-arrow-rotate-right ms-1" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-rotate-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="transform-origin: 0.5em 0.5em;"><g transform="translate(256 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M386.3 160H336c-17.7 0-32 14.3-32 32s14.3 32 32 32H464c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v51.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0s-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3s163.8-62.5 226.3 0L386.3 160z" transform="translate(-256 -256)"></path></g></g></svg><!-- <span class="ms-1 fas fa-redo" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com -->
+              </span>
+            </td>
+            <td class="py-2 align-middle text-end fs-8 fw-medium">
+              $120
+            </td>
+            <td class="py-2 align-middle white-space-nowrap text-end">
+              <div class="dropstart position-static d-inline-block">
+                <button class="btn btn-link text-body btn-sm dropdown-toggle btn-reveal" type="button" id="order-dropdown-2" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                  <svg class="svg-inline--fa fa-ellipsis fs-9" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"></path></svg><!-- <span class="fas fa-ellipsis-h fs-9"></span> Font Awesome fontawesome.com -->
+                </button>
+                <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="order-dropdown-2">
+                  <a href="#!" class="dropdown-item">View</a>
+                  <a href="#!" class="dropdown-item">Edit</a>
+                  <div class"dropdown-divider"=""></div>
+                  <a href="#!" class="dropdown-item text-warning">Archive</a>
+                </div>
+              </div>
+            </td>
+          </tr><tr class="btn-reveal-trigger">
+            <td class="order py-2  ps-3 align-middle white-space-nowrap">
+              <a class="fw-semibold" href="https://prium.github.io/phoenix/v1.12.0/apps/e-commerce/admin/order-details.html">
+                #2183
+              </a>
+            </td>
+            <td class="py-2 align-middle fw-bold">
+              <a class="fw-semibold text-body" href="#!">
+                Stanly Drinkwater
+              </a>
+            </td>
+            <td class="py-2 align-middle">
+              30/04/2023
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              Stanly Drinkwater, 1 Infinite Loop, Cupertino, California 90210
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              <p class="mb-0">Local Delivery</p>
+            </td>
+            <td class="py-2 align-middle text-center fs-8 white-space-nowrap">
+              <span class="badge fs-10 badge-phoenix badge-phoenix-secondary">
+                On Hold
+                <svg class="svg-inline--fa fa-ban ms-1" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ban" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="transform-origin: 0.5em 0.5em;"><g transform="translate(256 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M367.2 412.5L99.5 144.8C77.1 176.1 64 214.5 64 256c0 106 86 192 192 192c41.5 0 79.9-13.1 111.2-35.5zm45.3-45.3C434.9 335.9 448 297.5 448 256c0-106-86-192-192-192c-41.5 0-79.9 13.1-111.2 35.5L412.5 367.2zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z" transform="translate(-256 -256)"></path></g></g></svg><!-- <span class="ms-1 fas fa-ban" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com -->
+              </span>
+            </td>
+            <td class="py-2 align-middle text-end fs-8 fw-medium">
+              $70
+            </td>
+            <td class="py-2 align-middle white-space-nowrap text-end">
+              <div class="dropstart position-static d-inline-block">
+                <button class="btn btn-link text-body btn-sm dropdown-toggle btn-reveal" type="button" id="order-dropdown-3" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                  <svg class="svg-inline--fa fa-ellipsis fs-9" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"></path></svg><!-- <span class="fas fa-ellipsis-h fs-9"></span> Font Awesome fontawesome.com -->
+                </button>
+                <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="order-dropdown-3">
+                  <a href="#!" class="dropdown-item">View</a>
+                  <a href="#!" class="dropdown-item">Edit</a>
+                  <div class"dropdown-divider"=""></div>
+                  <a href="#!" class="dropdown-item text-warning">Archive</a>
+                </div>
+              </div>
+            </td>
+          </tr><tr class="btn-reveal-trigger">
+            <td class="order py-2  ps-3 align-middle white-space-nowrap">
+              <a class="fw-semibold" href="https://prium.github.io/phoenix/v1.12.0/apps/e-commerce/admin/order-details.html">
+                #2184
+              </a>
+            </td>
+            <td class="py-2 align-middle fw-bold">
+              <a class="fw-semibold text-body" href="#!">
+                Bucky Robert
+              </a>
+            </td>
+            <td class="py-2 align-middle">
+              30/04/2023
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              Bucky Robert, 1 Infinite Loop, Cupertino, California 90210
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              <p class="mb-0">Free Shipping</p>
+            </td>
+            <td class="py-2 align-middle text-center fs-8 white-space-nowrap">
+              <span class="badge fs-10 badge-phoenix badge-phoenix-warning">
+                Pending
+                <svg class="svg-inline--fa fa-bars-staggered ms-1" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars-staggered" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="transform-origin: 0.5em 0.5em;"><g transform="translate(256 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM64 256c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" transform="translate(-256 -256)"></path></g></g></svg><!-- <span class="ms-1 fas fa-stream" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com -->
+              </span>
+            </td>
+            <td class="py-2 align-middle text-end fs-8 fw-medium">
+              $92
+            </td>
+            <td class="py-2 align-middle white-space-nowrap text-end">
+              <div class="dropstart position-static d-inline-block">
+                <button class="btn btn-link text-body btn-sm dropdown-toggle btn-reveal" type="button" id="order-dropdown-4" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                  <svg class="svg-inline--fa fa-ellipsis fs-9" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"></path></svg><!-- <span class="fas fa-ellipsis-h fs-9"></span> Font Awesome fontawesome.com -->
+                </button>
+                <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="order-dropdown-4">
+                  <a href="#!" class="dropdown-item">View</a>
+                  <a href="#!" class="dropdown-item">Edit</a>
+                  <div class"dropdown-divider"=""></div>
+                  <a href="#!" class="dropdown-item text-warning">Archive</a>
+                </div>
+              </div>
+            </td>
+          </tr><tr class="btn-reveal-trigger">
+            <td class="order py-2  ps-3 align-middle white-space-nowrap">
+              <a class="fw-semibold" href="https://prium.github.io/phoenix/v1.12.0/apps/e-commerce/admin/order-details.html">
+                #2185
+              </a>
+            </td>
+            <td class="py-2 align-middle fw-bold">
+              <a class="fw-semibold text-body" href="#!">
+                Josef Stravinsky
+              </a>
+            </td>
+            <td class="py-2 align-middle">
+              30/04/2023
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              Josef Stravinsky, 1 Infinite Loop, Cupertino, California 90210
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              <p class="mb-0">Via Free Road</p>
+            </td>
+            <td class="py-2 align-middle text-center fs-8 white-space-nowrap">
+              <span class="badge fs-10 badge-phoenix badge-phoenix-secondary">
+                On Hold
+                <svg class="svg-inline--fa fa-ban ms-1" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ban" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="transform-origin: 0.5em 0.5em;"><g transform="translate(256 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M367.2 412.5L99.5 144.8C77.1 176.1 64 214.5 64 256c0 106 86 192 192 192c41.5 0 79.9-13.1 111.2-35.5zm45.3-45.3C434.9 335.9 448 297.5 448 256c0-106-86-192-192-192c-41.5 0-79.9 13.1-111.2 35.5L412.5 367.2zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z" transform="translate(-256 -256)"></path></g></g></svg><!-- <span class="ms-1 fas fa-ban" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com -->
+              </span>
+            </td>
+            <td class="py-2 align-middle text-end fs-8 fw-medium">
+              $120
+            </td>
+            <td class="py-2 align-middle white-space-nowrap text-end">
+              <div class="dropstart position-static d-inline-block">
+                <button class="btn btn-link text-body btn-sm dropdown-toggle btn-reveal" type="button" id="order-dropdown-5" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                  <svg class="svg-inline--fa fa-ellipsis fs-9" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"></path></svg><!-- <span class="fas fa-ellipsis-h fs-9"></span> Font Awesome fontawesome.com -->
+                </button>
+                <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="order-dropdown-5">
+                  <a href="#!" class="dropdown-item">View</a>
+                  <a href="#!" class="dropdown-item">Edit</a>
+                  <div class"dropdown-divider"=""></div>
+                  <a href="#!" class="dropdown-item text-warning">Archive</a>
+                </div>
+              </div>
+            </td>
+          </tr><tr class="btn-reveal-trigger">
+            <td class="order py-2  ps-3 align-middle white-space-nowrap">
+              <a class="fw-semibold" href="https://prium.github.io/phoenix/v1.12.0/apps/e-commerce/admin/order-details.html">
+                #2186
+              </a>
+            </td>
+            <td class="py-2 align-middle fw-bold">
+              <a class="fw-semibold text-body" href="#!">
+                Igor Borvibson
+              </a>
+            </td>
+            <td class="py-2 align-middle">
+              30/04/2023
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              Igor Borvibson, 1 Infinite Loop, Cupertino, California 90210
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              <p class="mb-0">Free Shipping</p>
+            </td>
+            <td class="py-2 align-middle text-center fs-8 white-space-nowrap">
+              <span class="badge fs-10 badge-phoenix badge-phoenix-primary">
+                Processing
+                <svg class="svg-inline--fa fa-arrow-rotate-right ms-1" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-rotate-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="transform-origin: 0.5em 0.5em;"><g transform="translate(256 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M386.3 160H336c-17.7 0-32 14.3-32 32s14.3 32 32 32H464c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v51.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0s-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3s163.8-62.5 226.3 0L386.3 160z" transform="translate(-256 -256)"></path></g></g></svg><!-- <span class="ms-1 fas fa-redo" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com -->
+              </span>
+            </td>
+            <td class="py-2 align-middle text-end fs-8 fw-medium">
+              $145
+            </td>
+            <td class="py-2 align-middle white-space-nowrap text-end">
+              <div class="dropstart position-static d-inline-block">
+                <button class="btn btn-link text-body btn-sm dropdown-toggle btn-reveal" type="button" id="order-dropdown-6" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                  <svg class="svg-inline--fa fa-ellipsis fs-9" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"></path></svg><!-- <span class="fas fa-ellipsis-h fs-9"></span> Font Awesome fontawesome.com -->
+                </button>
+                <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="order-dropdown-6">
+                  <a href="#!" class="dropdown-item">View</a>
+                  <a href="#!" class="dropdown-item">Edit</a>
+                  <div class"dropdown-divider"=""></div>
+                  <a href="#!" class="dropdown-item text-warning">Archive</a>
+                </div>
+              </div>
+            </td>
+          </tr><tr class="btn-reveal-trigger">
+            <td class="order py-2  ps-3 align-middle white-space-nowrap">
+              <a class="fw-semibold" href="https://prium.github.io/phoenix/v1.12.0/apps/e-commerce/admin/order-details.html">
+                #2187
+              </a>
+            </td>
+            <td class="py-2 align-middle fw-bold">
+              <a class="fw-semibold text-body" href="#!">
+                Katerina Karenin
+              </a>
+            </td>
+            <td class="py-2 align-middle">
+              30/04/2023
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              Katerina Karenin, 1 Infinite Loop, Cupertino, California 90210
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              <p class="mb-0">Flat Rate</p>
+            </td>
+            <td class="py-2 align-middle text-center fs-8 white-space-nowrap">
+              <span class="badge fs-10 badge-phoenix badge-phoenix-success">
+                Completed
+                <svg class="svg-inline--fa fa-check ms-1" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="" style="transform-origin: 0.4375em 0.5em;"><g transform="translate(224 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" transform="translate(-224 -256)"></path></g></g></svg><!-- <span class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com -->
+              </span>
+            </td>
+            <td class="py-2 align-middle text-end fs-8 fw-medium">
+              $55
+            </td>
+            <td class="py-2 align-middle white-space-nowrap text-end">
+              <div class="dropstart position-static d-inline-block">
+                <button class="btn btn-link text-body btn-sm dropdown-toggle btn-reveal" type="button" id="order-dropdown-7" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                  <svg class="svg-inline--fa fa-ellipsis fs-9" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"></path></svg><!-- <span class="fas fa-ellipsis-h fs-9"></span> Font Awesome fontawesome.com -->
+                </button>
+                <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="order-dropdown-7">
+                  <a href="#!" class="dropdown-item">View</a>
+                  <a href="#!" class="dropdown-item">Edit</a>
+                  <div class"dropdown-divider"=""></div>
+                  <a href="#!" class="dropdown-item text-warning">Archive</a>
+                </div>
+              </div>
+            </td>
+          </tr><tr class="btn-reveal-trigger">
+            <td class="order py-2  ps-3 align-middle white-space-nowrap">
+              <a class="fw-semibold" href="https://prium.github.io/phoenix/v1.12.0/apps/e-commerce/admin/order-details.html">
+                #2188
+              </a>
+            </td>
+            <td class="py-2 align-middle fw-bold">
+              <a class="fw-semibold text-body" href="#!">
+                Roy Anderson
+              </a>
+            </td>
+            <td class="py-2 align-middle">
+              29/04/2023
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              Roy Anderson, 1 Infinite Loop, Cupertino, California 90210
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              <p class="mb-0">Local Delivery</p>
+            </td>
+            <td class="py-2 align-middle text-center fs-8 white-space-nowrap">
+              <span class="badge fs-10 badge-phoenix badge-phoenix-secondary">
+                On Hold
+                <svg class="svg-inline--fa fa-ban ms-1" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ban" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="transform-origin: 0.5em 0.5em;"><g transform="translate(256 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M367.2 412.5L99.5 144.8C77.1 176.1 64 214.5 64 256c0 106 86 192 192 192c41.5 0 79.9-13.1 111.2-35.5zm45.3-45.3C434.9 335.9 448 297.5 448 256c0-106-86-192-192-192c-41.5 0-79.9 13.1-111.2 35.5L412.5 367.2zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z" transform="translate(-256 -256)"></path></g></g></svg><!-- <span class="ms-1 fas fa-ban" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com -->
+              </span>
+            </td>
+            <td class="py-2 align-middle text-end fs-8 fw-medium">
+              $90
+            </td>
+            <td class="py-2 align-middle white-space-nowrap text-end">
+              <div class="dropstart position-static d-inline-block">
+                <button class="btn btn-link text-body btn-sm dropdown-toggle btn-reveal" type="button" id="order-dropdown-8" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                  <svg class="svg-inline--fa fa-ellipsis fs-9" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"></path></svg><!-- <span class="fas fa-ellipsis-h fs-9"></span> Font Awesome fontawesome.com -->
+                </button>
+                <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="order-dropdown-8">
+                  <a href="#!" class="dropdown-item">View</a>
+                  <a href="#!" class="dropdown-item">Edit</a>
+                  <div class"dropdown-divider"=""></div>
+                  <a href="#!" class="dropdown-item text-warning">Archive</a>
+                </div>
+              </div>
+            </td>
+          </tr><tr class="btn-reveal-trigger">
+            <td class="order py-2  ps-3 align-middle white-space-nowrap">
+              <a class="fw-semibold" href="https://prium.github.io/phoenix/v1.12.0/apps/e-commerce/admin/order-details.html">
+                #2189
+              </a>
+            </td>
+            <td class="py-2 align-middle fw-bold">
+              <a class="fw-semibold text-body" href="#!">
+                Thomas Stephenson
+              </a>
+            </td>
+            <td class="py-2 align-middle">
+              29/04/2023
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              Thomas Stephenson, 116 Ballifeary Road, Bamff
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              <p class="mb-0">Flat Rate</p>
+            </td>
+            <td class="py-2 align-middle text-center fs-8 white-space-nowrap">
+              <span class="badge fs-10 badge-phoenix badge-phoenix-primary">
+                Processing
+                <svg class="svg-inline--fa fa-arrow-rotate-right ms-1" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-rotate-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="transform-origin: 0.5em 0.5em;"><g transform="translate(256 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M386.3 160H336c-17.7 0-32 14.3-32 32s14.3 32 32 32H464c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v51.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0s-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3s163.8-62.5 226.3 0L386.3 160z" transform="translate(-256 -256)"></path></g></g></svg><!-- <span class="ms-1 fas fa-redo" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com -->
+              </span>
+            </td>
+            <td class="py-2 align-middle text-end fs-8 fw-medium">
+              $52
+            </td>
+            <td class="py-2 align-middle white-space-nowrap text-end">
+              <div class="dropstart position-static d-inline-block">
+                <button class="btn btn-link text-body btn-sm dropdown-toggle btn-reveal" type="button" id="order-dropdown-9" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                  <svg class="svg-inline--fa fa-ellipsis fs-9" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"></path></svg><!-- <span class="fas fa-ellipsis-h fs-9"></span> Font Awesome fontawesome.com -->
+                </button>
+                <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="order-dropdown-9">
+                  <a href="#!" class="dropdown-item">View</a>
+                  <a href="#!" class="dropdown-item">Edit</a>
+                  <div class"dropdown-divider"=""></div>
+                  <a href="#!" class="dropdown-item text-warning">Archive</a>
+                </div>
+              </div>
+            </td>
+          </tr><tr class="btn-reveal-trigger">
+            <td class="order py-2  ps-3 align-middle white-space-nowrap">
+              <a class="fw-semibold" href="https://prium.github.io/phoenix/v1.12.0/apps/e-commerce/admin/order-details.html">
+                #2190
+              </a>
+            </td>
+            <td class="py-2 align-middle fw-bold">
+              <a class="fw-semibold text-body" href="#!">
+                Evie Singh
+              </a>
+            </td>
+            <td class="py-2 align-middle">
+              29/04/2023
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              Evie Singh, 54 Castledore Road, Tunstead
+            </td>
+            <td class="py-2 align-middle white-space-nowrap">
+              <p class="mb-0">Flat Rate</p>
+            </td>
+            <td class="py-2 align-middle text-center fs-8 white-space-nowrap">
+              <span class="badge fs-10 badge-phoenix badge-phoenix-success">
+                Completed
+                <svg class="svg-inline--fa fa-check ms-1" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="" style="transform-origin: 0.4375em 0.5em;"><g transform="translate(224 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" transform="translate(-224 -256)"></path></g></g></svg><!-- <span class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com -->
+              </span>
+            </td>
+            <td class="py-2 align-middle text-end fs-8 fw-medium">
+              $90
+            </td>
+            <td class="py-2 align-middle white-space-nowrap text-end">
+              <div class="dropstart position-static d-inline-block">
+                <button class="btn btn-link text-body btn-sm dropdown-toggle btn-reveal" type="button" id="order-dropdown-10" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                  <svg class="svg-inline--fa fa-ellipsis fs-9" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"></path></svg><!-- <span class="fas fa-ellipsis-h fs-9"></span> Font Awesome fontawesome.com -->
+                </button>
+                <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="order-dropdown-10">
+                  <a href="#!" class="dropdown-item">View</a>
+                  <a href="#!" class="dropdown-item">Edit</a>
+                  <div class"dropdown-divider"=""></div>
+                  <a href="#!" class="dropdown-item text-warning">Archive</a>
+                </div>
+              </div>
+            </td>
+          </tr></tbody>
+                          </table>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3"><button class="page-link disabled" data-list-pagination="prev" disabled=""><svg class="svg-inline--fa fa-chevron-left" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"></path></svg><!-- <span class="fas fa-chevron-left"></span> Font Awesome fontawesome.com --></button>
+                          <ul class="mb-0 pagination"><li class="active"><button class="page" type="button" data-i="1" data-page="10">1</button></li><li><button class="page" type="button" data-i="2" data-page="10">2</button></li><li><button class="page" type="button" data-i="3" data-page="10">3</button></li></ul><button class="page-link pe-0" data-list-pagination="next"><svg class="svg-inline--fa fa-chevron-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg><!-- <span class="fas fa-chevron-right"> </span> Font Awesome fontawesome.com --></button>
+                        </div>
+                      </div>
+                      <div class="p-3">
+                        <h4 class="mb-3">How to use</h4>
+                        <p>If you are using Gulp based workflow, follow these easy steps:</p>
+                        <ul>
+                          <li>Give your table a unique ID.</li>
+                          <li>Use the <code>advanceAjaxTableInit() </code>function from <code>src/js/theme/advance-ajax-table.js </code>in a new JS file and update the ID.</li>
+                          <li>Import and invoke the function in your script file.</li>
+                        </ul>
+                        <p>If you are not using Gulp based workflow:</p>
+                        <ul>
+                          <li>Give your table a unique ID.</li>
+                          <li>Find the <code>advanceAjaxTableInit() </code>function from <code>public/assets/js/pages/advance-ajax-table.js, </code>copy the code, and update the ID in a new function.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>

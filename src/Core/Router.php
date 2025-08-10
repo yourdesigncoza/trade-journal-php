@@ -15,11 +15,19 @@ class Router
         $this->routes['GET']['/'] = [HomeController::class, 'index'];
         $this->routes['GET']['/index.php'] = [HomeController::class, 'index'];
         
-        // API routes
+        // API routes - these should be handled by Router when .htaccess fails
         $this->routes['GET']['/api/trading-journal'] = [ApiController::class, 'getEntries'];
+        $this->routes['GET']['/api/trading-journal/html'] = [ApiController::class, 'getEntriesHtml'];
         $this->routes['POST']['/api/trading-journal'] = [ApiController::class, 'createEntry'];
         $this->routes['PUT']['/api/trading-journal'] = [ApiController::class, 'updateEntry'];
         $this->routes['DELETE']['/api/trading-journal'] = [ApiController::class, 'deleteEntry'];
+        
+        // Fallback API routes without leading slash
+        $this->routes['GET']['api/trading-journal'] = [ApiController::class, 'getEntries'];
+        $this->routes['GET']['api/trading-journal/html'] = [ApiController::class, 'getEntriesHtml'];
+        $this->routes['POST']['api/trading-journal'] = [ApiController::class, 'createEntry'];
+        $this->routes['PUT']['api/trading-journal'] = [ApiController::class, 'updateEntry'];
+        $this->routes['DELETE']['api/trading-journal'] = [ApiController::class, 'deleteEntry'];
     }
     
     public function dispatch()
@@ -36,6 +44,14 @@ class Router
         // Check for API routes with query parameters
         if (strpos($uri, '/api/trading-journal') === 0) {
             $baseUri = '/api/trading-journal';
+            
+            // Check for HTML endpoint first
+            if ($uri === '/api/trading-journal/html' && isset($this->routes[$method][$uri])) {
+                $this->callController($this->routes[$method][$uri]);
+                return;
+            }
+            
+            // Check for base endpoint with query params
             if (isset($this->routes[$method][$baseUri])) {
                 $this->callController($this->routes[$method][$baseUri]);
                 return;
@@ -50,13 +66,27 @@ class Router
     {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         
-        // Remove script name from URI if present
-        $scriptName = dirname($_SERVER['SCRIPT_NAME']);
-        if ($scriptName !== '/' && strpos($uri, $scriptName) === 0) {
-            $uri = substr($uri, strlen($scriptName));
+        // Get the base path of the application
+        $scriptName = $_SERVER['SCRIPT_NAME'];
+        $scriptDir = dirname($scriptName);
+        
+        // Remove the application directory from the URI if present
+        if ($scriptDir !== '/' && $scriptDir !== '\\') {
+            // Remove the base directory from the URI
+            if (strpos($uri, $scriptDir) === 0) {
+                $uri = substr($uri, strlen($scriptDir));
+            }
         }
         
-        return $uri ?: '/';
+        // Clean up the URI
+        $uri = '/' . ltrim($uri, '/');
+        
+        // Handle index.php in the URL
+        if ($uri === '/index.php' || $uri === '/') {
+            return '/';
+        }
+        
+        return $uri;
     }
     
     private function callController($handler)

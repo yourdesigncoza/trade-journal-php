@@ -1,6 +1,7 @@
 <?php
 
 // Alternative API entry point (for servers that don't support URL rewriting)
+require_once __DIR__ . '/../../functions.php';
 require_once __DIR__ . '/../../includes/autoloader.php';
 
 try {

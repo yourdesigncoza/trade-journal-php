@@ -1,5 +1,8 @@
 $(document).ready(function() {
     
+    // Detect base path for subdirectory installations
+    const basePath = window.location.pathname.includes('/trade-journal/') ? '/trade-journal' : '';
+    
     // Application state
     let trades = [];
     let filteredTrades = [];
@@ -92,7 +95,7 @@ $(document).ready(function() {
         const formData = getFormData($tradingForm);
         
         $.ajax({
-            url: '/api/trading-journal',
+            url: basePath + '/api/trading-journal',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
@@ -132,7 +135,7 @@ $(document).ready(function() {
         const formData = getFormData($editTradeForm);
         
         $.ajax({
-            url: `/api/trading-journal?id=${tradeId}`,
+            url: `${basePath}/api/trading-journal?id=${tradeId}`,
             method: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify(formData),
@@ -232,156 +235,68 @@ $(document).ready(function() {
         $tradesTableBody.html(`
             <tr>
                 <td colspan="13" class="text-center py-4">
-                    <div class="spinner-border text-info" role="status">
+                    <div class="spinner-border text-primary" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
-                    <p class="mt-2 text-muted mb-0">Loading trades...</p>
+                    <p class="mt-2 text-body-tertiary mb-0 fs-8">Loading trades...</p>
                 </td>
             </tr>
         `);
         
         $.ajax({
-            url: '/api/trading-journal',
+            url: basePath + '/api/trading-journal/html',
             method: 'GET',
             success: function(response) {
                 if (response.success) {
-                    trades = response.entries || [];
-                    filterTrades();
-                    updatePerformanceStats();
+                    $tradesTableBody.html(response.html);
+                    
+                    // Initialize tooltips for new content
+                    $('[data-bs-toggle="tooltip"]').tooltip();
+                    
+                    // Also load data for performance stats (still need raw data)
+                    loadTradesData();
                 } else {
                     showAlert('danger', 'Failed to load trades: ' + response.error);
                 }
             },
             error: function() {
                 showAlert('danger', 'Failed to load trades. Please try again.');
-                renderEmptyState();
+                $tradesTableBody.html(`
+                    <tr>
+                        <td colspan="13" class="text-center py-4">
+                            <i class="fas fa-chart-line fs-1 text-body-tertiary mb-3 d-block"></i>
+                            <h6 class="text-body-secondary fs-7">No trades found</h6>
+                            <p class="text-body-tertiary mb-0 fs-8">Start by adding your first trade entry above.</p>
+                        </td>
+                    </tr>
+                `);
             }
         });
     }
     
+    function loadTradesData() {
+        $.ajax({
+            url: basePath + '/api/trading-journal',
+            method: 'GET',
+            success: function(response) {
+                if (response.success) {
+                    trades = response.entries || [];
+                    filteredTrades = [...trades];
+                    updatePerformanceStats();
+                }
+            },
+            error: function() {
+                // Silently fail for stats - table is already loaded
+                console.warn('Failed to load performance data');
+            }
+        });
+    }
+    
+    // Note: Search and filtering now handled by reloading from server
     function filterTrades() {
-        const searchTerm = $searchInput.val().toLowerCase();
-        
-        if (!searchTerm) {
-            filteredTrades = [...trades];
-        } else {
-            filteredTrades = trades.filter(trade => 
-                Object.values(trade).some(value => 
-                    value && value.toString().toLowerCase().includes(searchTerm)
-                )
-            );
-        }
-        
-        sortAndRenderTrades();
-        updatePerformanceStats();
-    }
-    
-    function sortAndRenderTrades() {
-        const sorted = [...filteredTrades].sort((a, b) => {
-            let aVal = a[sortConfig.field];
-            let bVal = b[sortConfig.field];
-            
-            // Handle null values
-            if (aVal === null || aVal === undefined) aVal = '';
-            if (bVal === null || bVal === undefined) bVal = '';
-            
-            // Convert to comparable values
-            if (typeof aVal === 'string') aVal = aVal.toLowerCase();
-            if (typeof bVal === 'string') bVal = bVal.toLowerCase();
-            
-            if (sortConfig.direction === 'asc') {
-                return aVal > bVal ? 1 : -1;
-            } else {
-                return aVal < bVal ? 1 : -1;
-            }
-        });
-        
-        renderTrades(sorted);
-    }
-    
-    function renderTrades(tradesToRender) {
-        if (tradesToRender.length === 0) {
-            renderEmptyState();
-            return;
-        }
-        
-        let html = '';
-        tradesToRender.forEach(trade => {
-            html += generateTradeRow(trade);
-        });
-        
-        $tradesTableBody.html(html);
-        
-        // Initialize tooltips
-        $('[data-bs-toggle="tooltip"]').tooltip();
-    }
-    
-    function generateTradeRow(trade) {
-        const outcomeClass = {
-            'W': 'bg-success',
-            'L': 'bg-danger', 
-            'BE': 'bg-warning',
-            'C': 'bg-secondary'
-        };
-        
-        const directionClass = trade.direction === 'LONG' ? 'bg-success' : 'bg-danger';
-        const plClass = trade.plPercent > 0 ? 'text-success' : 'text-danger';
-        
-        return `
-            <tr data-trade-id="${trade.id}">
-                <td>
-                    <small>${formatDate(trade.date)}</small><br>
-                    <small class="text-muted">${trade.time || ''}</small>
-                </td>
-                <td><span class="badge bg-primary">${trade.market}</span></td>
-                <td><span class="badge bg-secondary">${trade.session}</span></td>
-                <td>
-                    ${trade.direction ? `<span class="badge ${directionClass}">${trade.direction}</span>` : '-'}
-                </td>
-                <td>${trade.entryPrice || '-'}</td>
-                <td>${trade.exitPrice || '-'}</td>
-                <td>
-                    ${trade.outcome ? `<span class="badge ${outcomeClass[trade.outcome]}">${trade.outcome}</span>` : '-'}
-                </td>
-                <td>
-                    ${trade.plPercent ? `<span class="${plClass}">${trade.plPercent}%</span>` : '-'}
-                </td>
-                <td>${trade.rr || '-'}</td>
-                <td>
-                    ${trade.tf ? trade.tf.map(tf => `<span class="badge bg-info me-1">${tf}</span>`).join('') : '-'}
-                </td>
-                <td>
-                    ${trade.chartHtf ? `<a href="${trade.chartHtf}" target="_blank" class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-chart-line"></i></a>` : ''}
-                    ${trade.chartLtf ? `<a href="${trade.chartLtf}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fas fa-chart-area"></i></a>` : ''}
-                    ${!trade.chartHtf && !trade.chartLtf ? '-' : ''}
-                </td>
-                <td>
-                    ${trade.comments ? `<button class="btn btn-sm btn-outline-info" title="${escapeHtml(trade.comments)}" data-bs-toggle="tooltip"><i class="fas fa-comment"></i></button>` : '-'}
-                </td>
-                <td>
-                    <div class="btn-group btn-group-sm">
-                        <button class="btn btn-outline-primary edit-trade" data-trade-id="${trade.id}" title="Edit">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-outline-danger delete-trade" data-trade-id="${trade.id}" title="Delete">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-        `;
-    }
-    
-    function renderEmptyState() {
-        $tradesTableBody.html(`
-            <tr>
-                <td colspan="13" class="text-center py-5">
-                    <i class="fas fa-chart-line fa-3x text-muted mb-3"></i>
-                    <h5 class="text-muted">No trades found</h5>
-                    <p class="text-muted mb-0">Start by adding your first trade entry above.</p>
-                </td>
-            </tr>
-        `);
+        // For now, just reload all trades
+        // TODO: Add server-side filtering in future
+        loadTrades();
     }
     
     function updateSortIcons() {
@@ -436,7 +351,7 @@ $(document).ready(function() {
     
     function performDelete(tradeId) {
         $.ajax({
-            url: `/api/trading-journal?id=${tradeId}`,
+            url: `${basePath}/api/trading-journal?id=${tradeId}`,
             method: 'DELETE',
             success: function(response) {
                 if (response.success) {
