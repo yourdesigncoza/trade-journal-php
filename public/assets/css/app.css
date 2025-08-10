@@ -1,0 +1,252 @@
+/* Custom Trading Journal Styles */
+
+/* Dark mode enhancements */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #111827;
+    --bs-body-color: #f9fafb;
+    --bs-border-color: #374151;
+    --bs-tertiary-bg: #1f2937;
+}
+
+[data-bs-theme="dark"] .bg-light {
+    background-color: var(--bs-tertiary-bg) !important;
+}
+
+[data-bs-theme="dark"] .card {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+[data-bs-theme="dark"] .table {
+    --bs-table-bg: #1f2937;
+    --bs-table-border-color: #374151;
+}
+
+[data-bs-theme="dark"] .table-hover > tbody > tr:hover > * {
+    background-color: #374151;
+}
+
+[data-bs-theme="dark"] .modal-content {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+/* Smooth transitions */
+.transition-colors {
+    transition: background-color 0.2s ease-in-out, 
+                border-color 0.2s ease-in-out, 
+                color 0.2s ease-in-out;
+}
+
+/* Color-coded design system */
+:root {
+    --trade-basics: #3b82f6;      /* Blue */
+    --trade-performance: #10b981;  /* Green */
+    --trade-metrics: #8b5cf6;     /* Purple */
+    --trade-charts: #f59e0b;      /* Orange */
+    --trade-comments: #06b6d4;    /* Teal */
+}
+
+/* Color utilities */
+.color-basics { color: var(--trade-basics) !important; }
+.color-performance { color: var(--trade-performance) !important; }
+.color-metrics { color: var(--trade-metrics) !important; }
+.color-charts { color: var(--trade-charts) !important; }
+.color-comments { color: var(--trade-comments) !important; }
+
+.border-basics { border-color: var(--trade-basics) !important; }
+.border-performance { border-color: var(--trade-performance) !important; }
+.border-metrics { border-color: var(--trade-metrics) !important; }
+.border-charts { border-color: var(--trade-charts) !important; }
+.border-comments { border-color: var(--trade-comments) !important; }
+
+/* Focus states for form elements */
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.border-basics.form-control:focus,
+.border-basics.form-select:focus {
+    border-color: var(--trade-basics);
+    box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+}
+
+.border-performance.form-control:focus,
+.border-performance.form-select:focus {
+    border-color: var(--trade-performance);
+    box-shadow: 0 0 0 0.25rem rgba(16, 185, 129, 0.25);
+}
+
+.border-metrics.form-control:focus,
+.border-metrics.form-select:focus {
+    border-color: var(--trade-metrics);
+    box-shadow: 0 0 0 0.25rem rgba(139, 92, 246, 0.25);
+}
+
+.border-charts.form-control:focus,
+.border-charts.form-select:focus {
+    border-color: var(--trade-charts);
+    box-shadow: 0 0 0 0.25rem rgba(245, 158, 11, 0.25);
+}
+
+.border-comments.form-control:focus,
+.border-comments.form-select:focus {
+    border-color: var(--trade-comments);
+    box-shadow: 0 0 0 0.25rem rgba(6, 182, 212, 0.25);
+}
+
+/* Custom checkbox styling for timeframes */
+.form-check-input:checked[name="tf[]"] {
+    background-color: var(--trade-metrics);
+    border-color: var(--trade-metrics);
+}
+
+/* Table enhancements */
+.table th.sortable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.table th.sortable:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-bs-theme="dark"] .table th.sortable:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.table th i {
+    opacity: 0.5;
+    font-size: 0.75rem;
+}
+
+.table th i.fa-sort-up,
+.table th i.fa-sort-down {
+    opacity: 1;
+    color: var(--bs-primary);
+}
+
+/* Badge styling */
+.badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Button group improvements */
+.btn-group-sm > .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+}
+
+/* Loading states */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Alert positioning */
+.alert {
+    margin-bottom: 0;
+}
+
+/* Dark mode toggle positioning */
+#darkModeToggle {
+    z-index: 1050;
+    border-radius: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .card-header h4 {
+        font-size: 1.1rem;
+    }
+    
+    .btn-group-sm > .btn {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.7rem;
+    }
+    
+    .table-responsive {
+        font-size: 0.85rem;
+    }
+    
+    #darkModeToggle {
+        width: 2.2rem;
+        height: 2.2rem;
+    }
+}
+
+/* Form section styling */
+.card-body h5 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.card-body h6 {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+/* Performance stats card */
+.card.h-100 {
+    height: 100% !important;
+}
+
+/* Modal improvements */
+.modal-dialog-scrollable .modal-content {
+    height: calc(100vh - 3.5rem);
+}
+
+@media (max-width: 576px) {
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: none;
+    }
+}
+
+/* Empty state styling */
+.fa-3x {
+    font-size: 3rem;
+}
+
+/* Tooltip improvements */
+.tooltip {
+    font-size: 0.75rem;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+[data-bs-theme="dark"] ::-webkit-scrollbar-track {
+    background: #374151;
+}
+
+[data-bs-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: #6b7280;
+}
+
+[data-bs-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
