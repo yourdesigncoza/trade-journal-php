@@ -10,15 +10,23 @@ This is a **Trading Journal application** built in vanilla PHP with MVC architec
 
 **MVC Structure:**
 - **Models**: `src/Models/` - Database operations (Database.php singleton, TradingJournal.php for CRUD)
-- **Views**: `src/Views/` - PHP templates with components system
+- **Views**: `src/Views/` - PHP templates with reusable components system
 - **Controllers**: `src/Controllers/` - Request handling (HomeController, ApiController)
 - **Core**: `src/Core/` - Application bootstrap (App.php singleton, Router.php)
 
-**Key Components:**
-- **App.php**: Singleton application manager, handles environment/config loading
-- **Router.php**: URL routing with RESTful API endpoints
-- **Database.php**: MySQLi singleton with auto table creation
-- **TradingJournal.php**: Main data model with CRUD operations
+**Key Architecture Components:**
+- **App.php**: Singleton application manager that loads `.env` variables and config files automatically
+- **Router.php**: Complex URL routing system handling both web pages and API endpoints with subdirectory support
+- **Database.php**: MySQLi singleton with automatic table creation and schema management
+- **TradingJournal.php**: Main data model with comprehensive CRUD operations and data validation
+- **Client-side**: jQuery-based SPA with auto-save, local storage, and Bootstrap 5 UI
+
+**Request Flow:**
+1. All requests go through `public/index.php` or `public/api/trading-journal.php`
+2. `.htaccess` handles URL rewriting for clean URLs and API routing
+3. Router dispatches to appropriate Controllers based on HTTP method and URI
+4. Controllers interact with Models for data operations
+5. Views render HTML responses with component inclusion system
 
 ## Development Commands
 
@@ -28,12 +36,14 @@ This is a **Trading Journal application** built in vanilla PHP with MVC architec
 ```bash
 # Start Apache/XAMPP/LAMPP server
 # Access: http://localhost/trade-journal/public/
+# Or for subdirectory installations: http://localhost/subdirectory/trade-journal/public/
 ```
 
 **Database Setup:**
-- Automatic table creation on first API call
-- Uses MySQLi with prepared statements
-- Configuration in `.env` and `config/database.php`
+- Automatic table creation on first API call via Database::initializeTable()
+- Uses MySQLi with prepared statements throughout
+- Schema updates handled automatically in Database.php
+- Configuration in `.env` (credentials) and `config/database.php` (settings)
 
 ## API Endpoints
 
@@ -43,17 +53,36 @@ RESTful JSON API at `/api/trading-journal`:
 - `PUT /api/trading-journal?id=X` - Update entry
 - `DELETE /api/trading-journal?id=X` - Delete entry
 
+## Client-Side Architecture
+
+**JavaScript Application (`public/assets/js/app.js`):**
+- jQuery-based SPA with modular function organization
+- Auto-detection of base path for subdirectory installations
+- Local storage for theme persistence and auto-save drafts
+- AJAX-driven data operations with comprehensive error handling
+- Real-time performance analytics calculations
+- Sortable/filterable table with client-side search
+- Form validation and user feedback systems
+
+**Key Client Features:**
+- **Auto-save**: Drafts saved every 10 seconds to localStorage
+- **Dark mode**: Theme toggle with localStorage persistence
+- **Dynamic UI**: Performance stats calculated and updated in real-time
+- **Responsive design**: Bootstrap 5 with mobile-first approach
+- **Base path detection**: Automatic subdirectory installation support
+
 ## Database Schema
 
 **Table: trading_journal_entries**
 - Primary key: `id` (VARCHAR, generated: timestamp + random)
-- Markets: ENUM('XAUUSD', 'EU', 'GU')
+- Markets: ENUM('XAUUSD', 'EU', 'GU', 'UJ', 'US30', 'NAS100') - expandable via Database.php
 - Sessions: ENUM('LO', 'NY', 'AS') 
 - Outcomes: ENUM('W', 'L', 'BE', 'C')
 - Directions: ENUM('LONG', 'SHORT')
-- JSON field for timeframes: `tf`
+- JSON field for timeframes: `tf` (stores array of selected timeframes)
 - Decimal fields: `entry_price`, `exit_price`, `pl_percent`, `rr`
 - Text fields: `chart_htf`, `chart_ltf`, `comments`
+- Datetime fields: `date`, `time`, `created_at`, `updated_at`
 
 ## Configuration
 
@@ -85,13 +114,32 @@ includes/autoloader.php # Class autoloading
 .env                 # Environment variables
 ```
 
+## View Components System
+
+**Component Architecture:**
+- Reusable PHP components in `src/Views/components/`
+- Included via PHP `include` statements in main views
+- Each component is self-contained with its own HTML, styling context, and JavaScript templates
+
+**Key Components:**
+- `trading-form.php`: Main trade entry form with 17 fields
+- `edit-form.php`: Modal form for editing existing trades
+- `trades-table.php`: Sortable/filterable data table
+- `performance-stats.php`: Real-time analytics with Phoenix list group design
+- `trade-strategy-checklist.php`: Pre-trade planning checklist component
+
+**Component Layout System:**
+- `home.php`: Main layout orchestrator with responsive grid system
+- Uses Bootstrap 5 grid with centered columns (col-10 offset-md-1)
+- Two-row layout: form + checklist (top), table + stats (bottom)
+
 ## Key Features
 
-- **Auto-save drafts**: Client-side persistence
-- **Performance analytics**: Calculated from trade data
+- **Auto-save drafts**: Client-side localStorage persistence every 10 seconds
+- **Performance analytics**: Real-time calculations from trade data with dynamic badges
 - **Color-coded UI**: Blue (basics), Green (performance), Purple (metrics), Orange (charts), Teal (comments)
-- **Responsive design**: Bootstrap 5 with dark mode
-- **Security**: Prepared statements, XSS headers, input sanitization
+- **Responsive design**: Bootstrap 5 with Phoenix theme components and dark mode
+- **Security**: Prepared statements, XSS headers, input sanitization, environment variables
 
 ## Adding New Markets/Sessions
 
@@ -100,17 +148,34 @@ includes/autoloader.php # Class autoloading
    - `src/Views/components/trading-form.php`
    - `src/Views/components/edit-form.php`
 
+## Deployment & Environment
+
+**Subdirectory Support:**
+- Application auto-detects installation path via JavaScript base path detection
+- Router handles both root directory and subdirectory installations
+- `.htaccess` configured for flexible URL rewriting
+
+**Production Considerations:**
+- Uncomment HTTPS redirect in `.htaccess` for SSL
+- Update `.env` with production database credentials
+- Ensure Apache mod_rewrite, mod_headers, mod_deflate, and mod_expires are enabled
+- File permissions: 755 for directories, 644 for files
+
 ## Error Handling
 
-- PHP errors logged via `error_log()`
-- Database errors caught and logged
-- Client-side validation + server-side sanitization
-- JSON error responses from API endpoints
+**Multi-layer Error Handling:**
+- PHP errors logged via `error_log()` with context
+- Database connection errors caught in Database singleton
+- MySQLi query errors logged with prepared statement context
+- Client-side AJAX error handling with user feedback
+- Router provides 404 JSON responses for missing endpoints
+- Form validation on both client and server sides
 
 ## Security Features
 
-- Prepared statements prevent SQL injection
-- Input sanitization and validation
-- Security headers in `.htaccess`
-- Environment variable configuration
-- No direct file access (all routing through index.php)
+- MySQLi prepared statements prevent SQL injection throughout
+- Input sanitization and validation at multiple layers
+- Comprehensive security headers in `.htaccess` (XSS, CSRF, content type)
+- Environment variable configuration prevents credential exposure
+- All requests routed through index.php (no direct file access)
+- Gzip compression and static file caching configured

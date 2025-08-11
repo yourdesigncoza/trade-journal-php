@@ -44,13 +44,13 @@
     <td class="align-middle text-center">
         <?php if ($trade['chartHtf'] || $trade['chartLtf']): ?>
             <?php if ($trade['chartHtf']): ?>
-                <a href="<?= htmlspecialchars($trade['chartHtf']) ?>" target="_blank" class="align-middle badge badge-phoenix badge-phoenix-primary text-decoration-none me-1">
-                    <span class="align-middle badge-label">HTF</span>
+                <a href="<?= htmlspecialchars($trade['chartHtf']) ?>" target="_blank" class="align-middle text-decoration-none me-1">
+                    <span class="badge badge-phoenix badge-phoenix-primary">HTF</span>
                 </a>
             <?php endif; ?>
             <?php if ($trade['chartLtf']): ?>
-                <a href="<?= htmlspecialchars($trade['chartLtf']) ?>" target="_blank" class="align-middle badge badge-phoenix badge-phoenix-primary text-decoration-none">
-                    <span class="align-middle badge-label">LTF</span>
+                <a href="<?= htmlspecialchars($trade['chartLtf']) ?>" target="_blank" class="align-middle text-decoration-none">
+                    <span class="badge badge-phoenix badge-phoenix-primary">LTF</span>
                 </a>
             <?php endif; ?>
         <?php else: ?>
@@ -59,8 +59,8 @@
     </td>
     <td class="align-middle text-center">
         <?php if ($trade['comments']): ?>
-            <span class="align-middle badge badge-phoenix badge-phoenix-info" title="<?= htmlspecialchars($trade['comments']) ?>" data-bs-toggle="tooltip" style="cursor: help;">
-                <span class="align-middle badge-label">Notes</span>
+            <span class="align-middle" title="<?= htmlspecialchars($trade['comments']) ?>" data-bs-toggle="tooltip" style="cursor: help;">
+                <span class="badge badge-phoenix badge-phoenix-info">Notes</span>
             </span>
         <?php else: ?>
             -
