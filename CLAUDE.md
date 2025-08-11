@@ -35,13 +35,20 @@ This is a **Trading Journal application** built in vanilla PHP with MVC architec
 **Local Development:**
 ```bash
 # Start Apache/XAMPP/LAMPP server
+sudo /opt/lampp/lampp start  # For LAMPP users
 # Access: http://localhost/trade-journal/public/
 # Or for subdirectory installations: http://localhost/subdirectory/trade-journal/public/
 ```
 
+**Testing & Debugging:**
+- No formal test framework - testing is done through browser and API endpoints
+- Debug mode controlled via `.env` file (APP_DEBUG=true)
+- PHP errors logged to system error log
+- Client-side debugging via browser developer tools
+
 **Database Setup:**
 - Automatic table creation on first API call via Database::initializeTable()
-- Uses MySQLi with prepared statements throughout
+- Uses MySQLi with prepared statements throughout  
 - Schema updates handled automatically in Database.php
 - Configuration in `.env` (credentials) and `config/database.php` (settings)
 
@@ -109,7 +116,8 @@ src/
 ├── Models/          # Data layer
 └── Views/           # Templates + components
 
-config/              # Configuration files
+phoenix/             # Phoenix Bootstrap theme reference (read-only)
+config/              # Configuration files  
 includes/autoloader.php # Class autoloading
 .env                 # Environment variables
 ```
@@ -124,9 +132,10 @@ includes/autoloader.php # Class autoloading
 **Key Components:**
 - `trading-form.php`: Main trade entry form with 17 fields
 - `edit-form.php`: Modal form for editing existing trades
-- `trades-table.php`: Sortable/filterable data table
+- `trades-table.php`: Sortable/filterable data table with trade-row.php
 - `performance-stats.php`: Real-time analytics with Phoenix list group design
 - `trade-strategy-checklist.php`: Pre-trade planning checklist component
+- `trade-row-functions.php`: JavaScript functions for table row operations
 
 **Component Layout System:**
 - `home.php`: Main layout orchestrator with responsive grid system
@@ -140,6 +149,7 @@ includes/autoloader.php # Class autoloading
 - **Color-coded UI**: Blue (basics), Green (performance), Purple (metrics), Orange (charts), Teal (comments)
 - **Responsive design**: Bootstrap 5 with Phoenix theme components and dark mode
 - **Security**: Prepared statements, XSS headers, input sanitization, environment variables
+- **Phoenix Theme**: Uses Phoenix Bootstrap components and design patterns from `/phoenix/` reference folder
 
 ## Adding New Markets/Sessions
 
